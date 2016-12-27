@@ -60,6 +60,7 @@ class xcat::params {
           "tftp-server.${::architecture}",
           "xCAT.${::architecture}",
           "OpenIPMI.${::architecture}",
+          "xinetd.${::architecture}",
           'ipmitool',
         ]
       } else {
@@ -70,6 +71,7 @@ class xcat::params {
         $pkg_list = [
           "tftp-server.${::architecture}",
           "xCAT.${::architecture}",
+          "xinetd.${::architecture}",
         ]
       }
       $pkg_exclude = [ "atftp-xcat.${::architecture}" ]
