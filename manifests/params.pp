@@ -8,6 +8,8 @@ class xcat::params {
     tag => 'xcat-service',
   }
 
+  $enable_ipmi = hiera("xcat::enable_ipmi", true)
+
   case $::osfamily {
     'RedHat': {
       case $::operatingsystem {
@@ -48,17 +50,28 @@ class xcat::params {
           gpgkey  => "${xcatdep_mirror}${key}",
         },
       }
-      $service_list = {
-        'xinetd'  => {},
-        'xcatd'   => {},
-        'ipmi'    => {},
+      if $enable_ipmi {
+        $service_list = {
+          'xinetd'  => {},
+          'xcatd'   => {},
+          'ipmi'    => {},
+        }
+        $pkg_list = [
+          "tftp-server.${::architecture}",
+          "xCAT.${::architecture}",
+          "OpenIPMI.${::architecture}",
+          'ipmitool',
+        ]
+      } else {
+        $service_list = {
+          'xinetd'  => {},
+          'xcatd'   => {},
+        }
+        $pkg_list = [
+          "tftp-server.${::architecture}",
+          "xCAT.${::architecture}",
+        ]
       }
-      $pkg_list = [
-        "tftp-server.${::architecture}",
-        "xCAT.${::architecture}",
-        "OpenIPMI.${::architecture}",
-        'ipmitool',
-      ]
       $pkg_exclude = [ "atftp-xcat.${::architecture}" ]
     }
     'Debian': {
