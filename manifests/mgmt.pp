@@ -3,10 +3,12 @@ define xcat::mgmt(
   $private_mac,
   $private_if,
   $private_ip,
+  $private_mask,
   $private_domain,
   $ipmi_mac      = undef,
   $ipmi_if       = undef,
   $ipmi_ip       = undef,
+  $ipmi_mask     = undef,
   $system_user   = 'root',
   $system_pw,
   $poddefaults   = {},
@@ -18,25 +20,27 @@ define xcat::mgmt(
   if $ipmi != undef {
     $ifaces = {
       "${private_if}" => {
-        ipaddress => $private_ip,
+        ipaddress  => $private_ip,
         macaddress => $private_mac,
+        netmask    => $private_mask,
       },
       "${ipmi_if}" => {
-        ipaddress => $ipmi_ip,
+        ipaddress  => $ipmi_ip,
         macaddress => $ipmi_mac,
+        netmask    => $ipmi_mask,
       },
     }
   } else {
     $ifaces = {
       "${private_if}" => {
-        ipaddress => $private_ip,
+        ipaddress  => $private_ip,
         macaddress => $private_mac,
+        netmask    => $private_mask,
       },
     }
   }
   create_resources(network::if::static, $ifaces, {
     ensure => 'up',
-    netmask   => '255.255.255.0',
   })
 
   ############# xCAT ####################
