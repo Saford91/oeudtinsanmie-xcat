@@ -6,10 +6,11 @@ include stdlib
 # Removes duplicate packages that may be installed by default, but which interfere with xCAT
 #
 class xcat(
-  $mgmt = hiera_hash('xcat::mgmt', undef),
-  $images = hiera_hash('xcat::images', undef),
+  $mgmt      = hiera_hash('xcat::mgmt', undef),
+  $images    = hiera_hash('xcat::images', undef),
+  $osimages  = hiera_hash('xcat::osimages', undef),
   $templates = hiera_hash('xcat::templates', undef),
-  $scripts = hiera_hash('xcat::scripts', undef),
+  $scripts   = hiera_hash('xcat::scripts', undef),
 ) inherits xcat::params {
   create_resources($xcat::params::repo_provider, $xcat::params::repos, $xcat::params::defaultrepo)
 
@@ -56,6 +57,11 @@ class xcat(
   ############## Images #####################
   if $images != undef {
     create_resources(xcat::image, $images)
+  }
+
+  ############## OS Images ###################
+  if $osimages != undef {
+    create_resources(xcat_osimage, $osimages)
   }
 
   ############## Templates ###################
