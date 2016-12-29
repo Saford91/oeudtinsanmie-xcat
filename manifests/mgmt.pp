@@ -44,7 +44,7 @@ define xcat::mgmt(
   })
 
   ############# xCAT ####################
-  create_resources(firewall, $xcatfirewalls, $firewalldefaults)
+  #create_resources(firewall, $xcatfirewalls, $firewalldefaults)
 
   $privatenet = split($private_ip, '\.')
   xcat_network { "${privatenet[0]}_${privatenet[1]}_${privatenet[2]}_0-255_255_255_0":
