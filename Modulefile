@@ -11,3 +11,4 @@ project_page 'https://github.ncsu.edu/engr-csc-netlabs/puppetmodules/xcat'
 # dependency 'username/name', '>= 1.2.0'
 
 dependency 'maestrodev/wget', '>=1.4.1'
+dependency 'razorsedge/network', '>=3.8.0'
