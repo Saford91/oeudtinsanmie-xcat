@@ -27,11 +27,13 @@ Puppet::Type.newtype(:xcat_osimage) do
     desc 'CFM directory name for PCM. Set to /install/osimages/<osimage name>/cfmdir by PCM.'
   end
 
-  newproperty(:configdump) do
-    desc 'Specifies the type of system dump to be collected. The values are selective, full, and none. The default is selective.'
-    newvalues(:selective, :full, :none)
-    defaultto :selective
-  end
+# This needs validation. Configdump can only be set when imagetype=NIM.
+#
+#  newproperty(:configdump) do
+#    desc 'Specifies the type of system dump to be collected. The values are selective, full, and none. The default is selective.'
+#    newvalues(:selective, :full, :none)
+#    defaultto :selective
+#  end
 
   newproperty(:crashkernelsize) do
     desc 'the size that assigned to the kdump kernel. If the kernel size is not set, 256M will be the default value.'
