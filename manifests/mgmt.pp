@@ -17,7 +17,7 @@ define xcat::mgmt(
 ) {
 
   ######### Network Interfaces #############
-  if $ipmi != undef {
+  if $ipmi_ip != undef {
     $ifaces = {
       "${private_if}" => {
         ipaddress  => $private_ip,
@@ -50,8 +50,8 @@ define xcat::mgmt(
   xcat_network { "${privatenet[0]}_${privatenet[1]}_${privatenet[2]}_0-255_255_255_0":
     ensure => absent,
   }
-  if ipmi_ip != undef {
-    $ipminet = split($ipmi[ipaddress], '\.')
+  if $ipmi_ip != undef {
+    $ipminet = split($ipmi_ip, '\.')
     xcat_network { "${ipminet[0]}_${ipminet[1]}_${ipminet[2]}_0-255_255_255_0":
       ensure => absent,
     }
