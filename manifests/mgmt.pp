@@ -177,7 +177,7 @@ define xcat::mgmt(
       system_pw     => $system_pw,
     }
     $newpods = set_xcatpod_defaults($pods, $poddefaults, $masterdefault)
-    create_resources(vclmgmt::pod, $newpods)
+    create_resources(xcat::pod, $newpods)
   }
 
 }
