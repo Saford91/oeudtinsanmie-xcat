@@ -1,4 +1,6 @@
-class xcat::params {
+class xcat::params (
+  $manage_repo = hiera('xcat::manage_repo'),
+){
 
   $servicedefault = {
     ensure => running,
