@@ -4,14 +4,15 @@ define xcat::mgmt(
   $private_ip,
   $private_mask,
   $private_domain,
-  $ipmi_if       = undef,
-  $ipmi_ip       = undef,
-  $ipmi_mask     = undef,
-  $system_user   = 'root',
+  $ipmi_if           = undef,
+  $ipmi_ip           = undef,
+  $ipmi_mask         = undef,
+  $system_user       = 'root',
   $system_pw,
-  $poddefaults   = {},
-  $pods          = undef,
-  $firewalldefaults = { },
+  $system_pw_crypto,
+  $poddefaults       = {},
+  $pods              = undef,
+  $firewalldefaults  = { },
 ) {
 
   ######### Network Interfaces #############
@@ -83,8 +84,9 @@ define xcat::mgmt(
   }
 
   xcat_passwd_tbl { 'system' :
-    username => $system_user,
-    password => $system_pw,
+    username    => $system_user,
+    password    => $system_pw,
+    cryptmethod => $system_pw_crypto,
   }
 
   xcat_site_attribute  { 'xcatprefix' :
