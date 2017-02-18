@@ -71,9 +71,15 @@ selinux <% for @arg in @selinux %>--<%= @arg %> <% end %>
 <% end %>
 %packages <% if @resolvedeps == :true %>--resolvedeps<% end %>
 #INCLUDE_DEFAULT_PKGLIST#
+%end
+
 %pre
 <% for @script in @pre %>#INCLUDE:#ENV:XCATROOT#/share/xcat/install/scripts/<%= @script %>#
 <% end %>
+%end
+
 %post
 <% for @script in @post %>#INCLUDE:#ENV:XCATROOT#/share/xcat/install/scripts/<%= @script %>#
 <% end %>
+%end
+
