@@ -64,6 +64,14 @@ reboot
 <% if !@selinux.empty? %># SE Linux
 selinux <% for @arg in @selinux %>--<%= @arg %> <% end %>
 <% end %>
+
+#
+# Add custom repositories
+#
+<% @repos.each do |name, info| -%>
+repo --name="<%= name %>" --baseurl="<%= info['baseurl'] %>" <% if info.has_key? 'cost' %> --cost=<%= info['cost'] %><% end %>
+<% end -%>
+
 %packages <% if @resolvedeps == :true %>--resolvedeps<% end %>
 #INCLUDE_DEFAULT_PKGLIST#
 %end

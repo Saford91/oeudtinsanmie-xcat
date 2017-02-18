@@ -54,6 +54,9 @@
 # [*resolvedeps*] 
 #   - Add --resolvedeps to the %packages line (Don't use this if it's been deprecated for the operating system version you are using)
 #     Defaults to false
+# [*repos*]
+#   - Add additional package repositories to use during installation. This is a hash in the format { reponame1 => { baseurl => "", cost => "" }, reponame2 => ... }. The cost parameter is optional.
+#     Defaults to {}
 # [*pkgs*]
 #   - Array of packages to install.  Gets put in the .pkglist file for this xcat template
 # [*otheropts*] 
@@ -84,6 +87,7 @@ define xcat::template(
   $mouse          = '',
   $skipx          = true,
   $resolvedeps    = false,
+  $repos          = {},
   $pkgs,          # <-- add sane list here = [],
   $otheropts      = [],
   $prescripts     = undef,
