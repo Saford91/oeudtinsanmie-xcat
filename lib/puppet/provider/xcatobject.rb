@@ -59,7 +59,7 @@ class Puppet::Provider::Xcatobject < Puppet::Provider::Xcatprovider
     inst_hash[:name]   = inst_name
     inst_hash[:ensure] = :present
     hash_list.each { |line|
-      key, value = line.split("=")
+      key, delim, value = line.partition("=")
 
       if (value.include? ",") then
         inst_hash[key.lstrip] = value.split(",")
