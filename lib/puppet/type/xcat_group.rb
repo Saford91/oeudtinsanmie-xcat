@@ -8,7 +8,7 @@ Puppet::Type.newtype(:xcat_group) do
     desc '(nodegroup.groupname) Name of the group.'
   end
 
-  newproperty(:addkmdline) do
+  newproperty(:addkcmdline) do
     desc '(bootparams.addkcmdline) User specified one or more parameters to be passed to the kernel'
   end
 
@@ -81,7 +81,7 @@ Puppet::Type.newtype(:xcat_group) do
     desc '(hwinv.cputype) The cpu model name for the node.'
   end
 
-  newproperty(:dhcpinterfaes) do
+  newproperty(:dhcpinterfaces) do
     desc '(servicenode.dhcpinterfaces) The network interfaces DHCP server should listen on for the target node. This attribute can be used for management node and service nodes. If defined, it will override the values defined in site.dhcpinterfaces. This is a comma separated list of device names. !remote! indicates a non-local network for relay DHCP. For example: !remote!,eth0,eth1'
   end
 
