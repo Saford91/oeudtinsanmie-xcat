@@ -13,7 +13,9 @@ class xcat(
   $scripts     = hiera_hash('xcat::scripts', undef),
 ) inherits xcat::params {
 
-  create_resources($xcat::params::repo_provider, $xcat::params::repos, $xcat::params::defaultrepo)
+  if $xcat::params::manage_repo {
+    create_resources($xcat::params::repo_provider, $xcat::params::repos, $xcat::params::defaultrepo)
+  }
 
   package { $xcat::params::pkg_list :
     ensure => 'latest',
