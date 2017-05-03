@@ -1,6 +1,4 @@
-class xcat::params (
-  $manage_repo = hiera('xcat::manage_repo'),
-){
+class xcat::params {
 
   $servicedefault = {
     ensure => running,
@@ -11,6 +9,7 @@ class xcat::params (
   }
 
   $enable_ipmi = hiera("xcat::enable_ipmi", true)
+  $manage_repo = hiera("xcat::manage_repo", true)
 
   case $::osfamily {
     'RedHat': {
