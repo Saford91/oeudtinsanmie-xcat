@@ -81,7 +81,7 @@ repo --name="<%= name %>" --baseurl="<%= info['baseurl'] %>" <% if info.has_key?
 <% end %>
 %end
 
-%post
+%post <% for @arg in @postargs %>--<%= @arg %> <% end %>
 <% for @script in @post %>#INCLUDE:#ENV:XCATROOT#/share/xcat/install/scripts/<%= @script %>#
 <% end %>
 %end

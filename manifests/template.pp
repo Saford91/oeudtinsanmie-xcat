@@ -68,6 +68,8 @@
 # [*postscripts*] 
 #   - Array of postscripts to import into kickstart via xCAT.  You can use the xcat_script function to configure your own pre and postscript files in the correct filepath using the File resource
 #     Defaults to [ "post.${os}", ]
+# [*postargs*]
+#   - Array of options to pass to the %post directive in the kickstart file
 #
 define xcat::template(
   $os,
@@ -92,6 +94,7 @@ define xcat::template(
   $otheropts      = [],
   $prescripts     = undef,
   $postscripts    = undef,
+  $postargs       = undef,
 ) {
   if $prescripts == undef {
     $pre = [ "pre.${os}", ]
